@@ -109,17 +109,19 @@ steps:
     - refs/tags/v*
 
 - name: deploy:cdn
-  image: drillster/drone-rsync
-  settings:
-    hosts: [ "rsync.keycdn.com" ]
-    user: podlove
-    key:
-      from_secret: CDN_KEY
-    source: ./apps/web-player/dist
-    target: applications/web-player/
-  when:
-    ref:
-    - refs/tags/v*
+  image: instrumentisto/rsync-ssh
+  commands:
+    - ls -la
+  # settings:
+  #   hosts: [ "rsync.keycdn.com" ]
+  #   user: podlove
+  #   key:
+  #     from_secret: CDN_KEY
+  #   source: ./apps/web-player/dist
+  #   target: applications/web-player/
+  # when:
+  #   ref:
+  #   - refs/tags/v*
 
 
 ---
