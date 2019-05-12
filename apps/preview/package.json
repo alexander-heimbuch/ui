@@ -1,12 +1,22 @@
 {
-  "name": "preview",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@podlove/preview",
+  "version": "4.5.1",
+  "description": "Podlove Preview",
+  "homepage": "https://github.com/podlove/ui/tree/development/apps/preview",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --watch --config ./.build/webpack.config.dev"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Alexander Heimbuch <github@heimbu.ch>",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "2.6.10",
+    "vue-server-renderer": "2.6.10",
+    "express": "4.16.4",
+    "@podlove/components": "4.5.0"
+  },
+  "devDependencies": {
+    "@podlove/build": "^4.5.0",
+    "webpack": "4.26.0"
+  }
 }
