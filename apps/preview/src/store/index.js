@@ -1,28 +1,16 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
-import actions from './actions'
-import mutations from './mutations'
-import getters from './getters'
+import sagas from '@podlove/player-sagas'
+import { createStore as createReduxStore, applyMiddleware, compose } from 'redux'
+import { connect } from 'redux-vuex'
 
-Vue.use(Vuex)
+import reducers from './reducers'
 
-export function createStore () {
-  return new Vuex.Store({
-    state: {
-      activeType: null,
-      itemsPerPage: 20,
-      items: {/* [id: number]: Item */},
-      users: {/* [id: string]: User */},
-      lists: {
-        top: [/* number */],
-        new: [],
-        show: [],
-        ask: [],
-        job: []
-      }
-    },
-    actions,
-    mutations,
-    getters
-  })
+export function createStore() {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+  const store = createReduxStore(reducers, composeEnhancers(applyMiddleware(sagas.middleware)))
+
+  connect({ Vue, store, actions })
+
+  return store
 }
