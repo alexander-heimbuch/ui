@@ -14,7 +14,11 @@ export function createStore(env = 'server') {
     initialState = window.__INITIAL_STATE__ || {}
   }
 
-  const store = createReduxStore(reducers, initialState, composeEnhancers(applyMiddleware(sagas.middleware)))
+  const store = createReduxStore(
+    reducers,
+    initialState,
+    composeEnhancers(applyMiddleware(sagas.middleware))
+  )
 
   connect({ Vue, store })
 
