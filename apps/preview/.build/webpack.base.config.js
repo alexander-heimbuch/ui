@@ -11,7 +11,7 @@ module.exports = {
     filename: '[name].[chunkhash].js'
   },
   resolve: resolve({
-    public: path.resolve(__dirname, '../public')
+    public: path.resolve(__dirname, '../public'),
   }),
   module: {
     rules: [rules.javascript(), rules.vue(), rules.url(), rules.vueStyles({ prod: isProd })]

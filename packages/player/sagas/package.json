@@ -6,6 +6,10 @@
   "keywords": [],
   "author": "Alexander Heimbuch <github@heimbu.ch>",
   "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf dist publish",
+    "build": "npm run clean && webpack --config .build/webpack.config.js"
+  },
   "dependencies": {
     "@podlove/components": "^4.5.6",
     "@podlove/player-actions": "^4.5.6",

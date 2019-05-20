@@ -10,7 +10,10 @@ export default {
       params: { id }
     }
   }) {
-    console.log('foooo!')
+    store.dispatch({
+      type: 'SET_TITLE',
+      payload: '123456'
+    })
   }
 }
 </script>

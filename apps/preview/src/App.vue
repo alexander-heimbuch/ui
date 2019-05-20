@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    <header class="header">
-      <nav class="inner">
-        <router-link to="/" exact>
-          <img class="logo" src="~public/logo-48.png" alt="logo" />
-        </router-link>
-      </nav>
-    </header>
-    <transition name="fade" mode="out-in">
-      <router-view class="view"></router-view>
-    </transition>
+    <header-component />
+    <main>
+      <transition name="fade" mode="out-in">
+        <router-view class="view"></router-view>
+      </transition>
+    </main>
   </div>
 </template>
 
-<style></style>
+<script>
+import HeaderComponent from './components/Header'
+
+export default {
+  components: {
+    HeaderComponent
+  }
+}
+</script>
+
+<style lang="scss">
+@import './theme/globals';
+</style>

@@ -1,4 +1,4 @@
-
+const path = require('path')
 const { resolve, plugins } = require('@podlove/build')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -19,10 +19,11 @@ module.exports = merge(base, {
   }),
   // https://webpack.js.org/configuration/externals/#externals
   // https://github.com/liady/webpack-node-externals
-  externals: nodeExternals({
-    // do not externalize CSS files in case we need to import it from a dep
-    whitelist: /\.css$/
-  }),
+  externals:
+    nodeExternals({
+      modulesDir: path.resolve(__dirname, 'node_modules'),
+      whitelist: /\.css$/
+    }),
   plugins: [
     plugins.env({
       'process.env.NODE_ENV': process.env.NODE_ENV || 'development',

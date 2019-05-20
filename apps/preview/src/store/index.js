@@ -5,12 +5,18 @@ import { connect } from 'redux-vuex'
 
 import reducers from './reducers'
 
-export function createStore() {
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+export function createStore(env = 'server') {
+  let composeEnhancers = compose
+  let initialState = {}
 
-  const store = createReduxStore(reducers, composeEnhancers(applyMiddleware(sagas.middleware)))
+  if (env === 'client') {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    initialState = window.__INITIAL_STATE__ || {}
+  }
 
-  connect({ Vue, store, actions })
+  const store = createReduxStore(reducers, initialState, composeEnhancers(applyMiddleware(sagas.middleware)))
+
+  connect({ Vue, store })
 
   return store
 }
