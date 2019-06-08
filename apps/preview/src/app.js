@@ -22,7 +22,6 @@ export function createApp(env = 'server') {
   })
 
   // Sync router with store
-  
 
   // expose the app, the router and the store.
   // note we are not mounting the app here, since bootstrapping will be

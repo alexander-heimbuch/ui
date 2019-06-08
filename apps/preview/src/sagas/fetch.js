@@ -1,6 +1,6 @@
-import { prop, compose } from 'ramda';
-import ApolloClient from 'apollo-boost';
-import { gql } from 'apollo-boost';
+import { prop, compose } from 'ramda'
+import ApolloClient from 'apollo-boost'
+import { gql } from 'apollo-boost'
 import { call, takeEvery, put, select, race, delay, cancel, fork, take } from 'redux-saga/effects'
 
 import podcastsQuery from '../graphql/podcasts.graphql'
@@ -9,14 +9,21 @@ import { setEpisodes } from '../store/actions'
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/api/graphiql'
-});
+})
 
 export function* fetchSaga() {
   yield fetchWait()
   yield takeEvery(FETCH_EPISODES, fetchEpisodes)
 }
 
-const request = query => client.query({ query: gql`${query}` }).then(prop('data'))
+const request = query =>
+  client
+    .query({
+      query: gql`
+        ${query}
+      `
+    })
+    .then(prop('data'))
 
 const fetchStart = type => ({
   type: `FETCH_START_${type}`
@@ -39,7 +46,6 @@ export function* fetchEpisodes() {
 //   yield delay(100)
 //   yield put({ type: 'FETCH_DONE' })
 // }
-
 
 export function* fetchWait() {
   while (true) {

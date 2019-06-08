@@ -63,13 +63,12 @@ export default context => {
         if (state.action.type !== FETCH_DONE) {
           return
         }
-        
+
         context.state = store.getState()
         resolve(app)
 
         done()
       })
-
     }, reject)
   })
 }
