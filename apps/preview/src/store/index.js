@@ -2,6 +2,7 @@ import Vue from 'vue'
 import sagas from '@podlove/player-sagas'
 import { createStore as createReduxStore, applyMiddleware, compose } from 'redux'
 import { connect } from 'redux-vuex'
+import { radiatorSaga } from '../sagas/fetch'
 
 import reducers from './reducers'
 
@@ -19,6 +20,8 @@ export function createStore(env = 'server') {
     initialState,
     composeEnhancers(applyMiddleware(sagas.middleware))
   )
+
+  sagas.run(radiatorSaga)
 
   connect({ Vue, store })
 

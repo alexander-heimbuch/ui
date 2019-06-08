@@ -14,7 +14,7 @@ module.exports = {
     public: path.resolve(__dirname, '../public'),
   }),
   module: {
-    rules: [rules.javascript(), rules.vue(), rules.url(), rules.vueStyles({ prod: isProd })]
+    rules: [rules.javascript(), rules.vue(), rules.url(), rules.vueStyles({ prod: isProd }), rules.graphql()]
   },
   plugins: isProd ? [
     plugins.vue(),

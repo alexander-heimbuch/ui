@@ -11,8 +11,7 @@ export default {
     }
   }) {
     store.dispatch({
-      type: 'SET_TITLE',
-      payload: '123456'
+      type: 'FETCH_EPISODES'
     })
   }
 }

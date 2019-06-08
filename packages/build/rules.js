@@ -103,6 +103,8 @@ const url = () => ({
 
 const handlebars = () => ({ test: /\.hbs$/, loader: 'handlebars-loader' })
 
+const graphql = () => ({ test: /\.graphql?$/, loader: 'webpack-graphql-loader' })
+
 module.exports = {
   vue,
   javascript,
@@ -113,5 +115,6 @@ module.exports = {
   scss,
   mustache,
   handlebars,
-  url
+  url,
+  graphql
 }

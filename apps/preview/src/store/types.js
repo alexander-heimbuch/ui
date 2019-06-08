@@ -1,0 +1,7 @@
+export const FETCH_EPISODES = 'FETCH_EPISODES'
+
+export const FETCH_DONE = 'FETCH_DONE'
+
+export const ADD_EPISODE = 'ADD_EPISODE'
+export const SET_EPISODES = 'SET_EPISODES'
+export const ROUTE_CHANGED = 'ROUTE_CHANGED'

@@ -1,0 +1,106 @@
+schema {
+  query: RootQueryType
+  mutation: RootMutationType
+}
+
+"""A chapter in an episode"""
+type Chapter {
+  image: String
+  link: String
+  start: Int
+  title: String
+}
+
+"""
+The `DateTime` scalar type represents a date and time in the UTC
+timezone. The DateTime appears in a JSON response as an ISO8601 formatted
+string, including UTC timezone ("Z"). The parsed date and time string will
+be converted to UTC and any UTC offset other than 0 will be rejected.
+"""
+scalar DateTime
+
+"""An audio enclosure"""
+type Enclosure {
+  length: Int
+  type: String
+  url: String
+}
+
+"""An episode in a podcast"""
+type Episode {
+  chapters(order: SortOrder = ASC): [Chapter]
+  content: String
+  description: String
+  duration: String
+  enclosure: Enclosure
+  guid: String
+  id: ID!
+  image: String
+  number: Int
+  podcast: Podcast
+  publishedAt: DateTime
+  slug: String
+  subtitle: String
+  title: String
+}
+
+"""A network"""
+type Network {
+  id: ID!
+  image: String
+  podcasts: [Podcast]
+  slug: String
+  title: String
+}
+
+"""A podcast"""
+type Podcast {
+  author: String
+  description: String
+  episodes(itemsPerPage: Int = 10, page: Int = 1): [Episode]
+  episodesCount: Int
+  id: ID!
+  image: String
+  language: String
+  lastBuiltAt: DateTime
+  ownerEmail: String
+  ownerName: String
+  publishedAt: DateTime
+  slug: String
+  subtitle: String
+  title: String
+}
+
+type RootMutationType {
+  """Request an authenticated session"""
+  authenticatedSession(password: String!, usernameOrEmail: String!): Session
+}
+
+type RootQueryType {
+  """Get one episode"""
+  episode(id: ID!): Episode
+
+  """Get one network"""
+  network(id: ID!): Network
+
+  """Get all networks"""
+  networks: [Network]
+
+  """Get one podcast"""
+  podcast(id: ID!): Podcast
+
+  """Get all podcasts"""
+  podcasts: [Podcast]
+}
+
+"""A user API session"""
+type Session {
+  token: String
+  username: String
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
