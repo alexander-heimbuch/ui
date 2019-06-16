@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createStore } from './store'
 import { createRouter } from './router'
+import { routeChanged } from './store/actions'
 
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
@@ -22,6 +23,11 @@ export function createApp(env = 'server') {
   })
 
   // Sync router with store
+  router.beforeEach((to, _, next) => {
+    store.dispatch(routeChanged(to))
+    next()
+  })
+
 
   // expose the app, the router and the store.
   // note we are not mounting the app here, since bootstrapping will be

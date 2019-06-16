@@ -4,24 +4,20 @@
     class="progress"
     :style="{
       width: percent + '%',
-      height: height,
-      'background-color': canSuccess ? color : failedColor,
+      'background-color': canSuccess ? '#ffca2b' : '#ff0000',
       opacity: show ? 1 : 0
     }"
   ></div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
       percent: 0,
       show: false,
-      canSuccess: true,
-      duration: 3000,
-      height: '2px',
-      color: '#ffca2b',
-      failedColor: '#ff0000'
+      canSuccess: true
     }
   },
   methods: {
@@ -41,15 +37,6 @@ export default {
       }, 100)
       return this
     },
-    set(num) {
-      this.show = true
-      this.canSuccess = true
-      this.percent = Math.floor(num)
-      return this
-    },
-    get() {
-      return Math.floor(this.percent)
-    },
     increase(num) {
       this.percent = this.percent + Math.floor(num)
       return this
@@ -61,10 +48,6 @@ export default {
     finish() {
       this.percent = 100
       this.hide()
-      return this
-    },
-    pause() {
-      clearInterval(this._timer)
       return this
     },
     hide() {

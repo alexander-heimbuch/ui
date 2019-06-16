@@ -1,7 +1,12 @@
 export const FETCH_EPISODES = 'FETCH_EPISODES'
-
 export const FETCH_DONE = 'FETCH_DONE'
+export const FETCH_FAILED = 'FETCH_FAILED'
 
 export const ADD_EPISODE = 'ADD_EPISODE'
 export const SET_EPISODES = 'SET_EPISODES'
 export const ROUTE_CHANGED = 'ROUTE_CHANGED'
+
+// Progressbar
+export const SHOW_PROGRESSBAR = 'SHOW_PROGRESSBAR'
+export const HIDE_PROGRESSBAR = 'HIDE_PROGRESSBAR'
+export const FAIL_PROGRESSBAR = 'FAIL_PROGRESSBAR'

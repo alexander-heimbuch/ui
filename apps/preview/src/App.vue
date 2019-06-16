@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <header-component />
+    <progressbar-component />
     <main>
       <transition name="fade" mode="out-in">
         <router-view class="view"></router-view>
@@ -10,15 +11,17 @@
 </template>
 
 <script>
-import HeaderComponent from './components/Header'
+import { Header as HeaderComponent } from './components'
+import { ProgressBar as ProgressbarComponent } from './components'
 
 export default {
   components: {
-    HeaderComponent
+    HeaderComponent,
+    ProgressbarComponent
   }
 }
 </script>
 
 <style lang="scss">
-@import './theme/globals';
+  @import './theme/globals';
 </style>

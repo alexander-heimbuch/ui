@@ -10,6 +10,6 @@ export function createRouter() {
     mode: 'history',
     fallback: false,
     scrollBehavior: () => ({ y: 0 }),
-    routes: [{ path: '/', component: Home }]
+    routes: [{ path: '/', component: Home, name: 'home' }]
   })
 }
