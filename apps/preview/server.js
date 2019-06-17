@@ -102,7 +102,7 @@ function render(req, res) {
   }
 
   const context = {
-    title: 'Vue HN 2.0', // default title
+    title: 'Podlove Preview', // default title
     url: req.url
   }
 

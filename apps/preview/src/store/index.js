@@ -7,6 +7,7 @@ import { fetchSaga } from '../sagas/fetch'
 import { progressbarSaga } from '../sagas/progressbar'
 
 import reducers from './reducers'
+import * as selectors from './selectors'
 
 export function createStore(env = 'server') {
   let composeEnhancers = compose
@@ -23,7 +24,7 @@ export function createStore(env = 'server') {
     composeEnhancers(applyMiddleware(sagas.middleware))
   )
 
-  sagas.run(fetchSaga, routerSaga, progressbarSaga)
+  sagas.run(fetchSaga, routerSaga, progressbarSaga({ visible: selectors.progressbarVisible, progress: selectors.progressbarProgress }))
 
   connect({ Vue, store })
 

@@ -6,7 +6,11 @@ export const ADD_EPISODE = 'ADD_EPISODE'
 export const SET_EPISODES = 'SET_EPISODES'
 export const ROUTE_CHANGED = 'ROUTE_CHANGED'
 
+// Lifecycle
+export const READY = 'READY'
+
 // Progressbar
 export const SHOW_PROGRESSBAR = 'SHOW_PROGRESSBAR'
 export const HIDE_PROGRESSBAR = 'HIDE_PROGRESSBAR'
+export const PROGRESS_PROGRESSBAR = 'PROGRESS_PROGRESSBAR'
 export const FAIL_PROGRESSBAR = 'FAIL_PROGRESSBAR'

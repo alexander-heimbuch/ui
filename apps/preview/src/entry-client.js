@@ -1,10 +1,11 @@
-import Vue from 'vue'
 import { createApp } from './app'
+import * as actions from './store/actions'
 
-const { app, router } = createApp('client')
+const { app, router, store } = createApp('client')
 
 router.onReady(() => {
   app.$mount('#app')
+  store.dispatch(actions.ready())
 })
 
 // service worker

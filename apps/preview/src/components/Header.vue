@@ -31,10 +31,13 @@ export default {}
 
 <style lang="scss" scoped>
 @import '../theme/mixins';
+@import '../theme/variables';
+
 .header {
   display: flex;
   width: 100%;
   border-bottom: 1px solid v(border);
+  height: $header-height;
   padding: 13px 35px;
 }
 

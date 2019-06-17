@@ -2,7 +2,7 @@
   <div id="app">
     <header-component />
     <progressbar-component />
-    <main>
+    <main class="main">
       <transition name="fade" mode="out-in">
         <router-view class="view"></router-view>
       </transition>
@@ -24,4 +24,5 @@ export default {
 
 <style lang="scss">
 @import './theme/globals';
+@import './theme/layout';
 </style>

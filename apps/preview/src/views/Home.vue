@@ -1,20 +1,17 @@
 <template>
-  <h1>Hello World</h1>
+  <div class="home">
+    <subscribe></subscribe>
+    <feed></feed>
+  </div>
 </template>
 
 <script>
+import { Subscribe, Feed } from '../components'
+
 export default {
-  asyncData({
-    store,
-    route: {
-      params: { id }
-    }
-  }) {
-    store.dispatch({
-      type: 'FETCH_EPISODES'
-    })
+  components: {
+    Subscribe,
+    Feed
   }
 }
 </script>
-
-<style></style>
