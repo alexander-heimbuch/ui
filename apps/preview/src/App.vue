@@ -23,5 +23,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './theme/globals';
+@import './theme/globals';
 </style>

@@ -4,7 +4,6 @@ import { createApp } from './app'
 const { app, router } = createApp('client')
 
 router.onReady(() => {
-
   app.$mount('#app')
 })
 

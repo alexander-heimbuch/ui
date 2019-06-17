@@ -56,7 +56,12 @@ export function* fetch(type, query, action) {
   }
 }
 
-const setEpisodes = compose(actions.setEpisodes, flatten, map(prop('episodes')), prop('publishedPodcasts'))
+const setEpisodes = compose(
+  actions.setEpisodes,
+  flatten,
+  map(prop('episodes')),
+  prop('publishedPodcasts')
+)
 
 export function* fetchSaga() {
   yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)

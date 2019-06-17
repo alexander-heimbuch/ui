@@ -5,14 +5,17 @@ export const INITIAL_STATE = {
   show: false
 }
 
-export const reducer = handleActions({
-  [SHOW_PROGRESSBAR]: state => ({
-    ...state,
-    show: true
-  }),
+export const reducer = handleActions(
+  {
+    [SHOW_PROGRESSBAR]: state => ({
+      ...state,
+      show: true
+    }),
 
-  [HIDE_PROGRESSBAR]: state => ({
-    ...state,
-    show: false
-  })
-}, INITIAL_STATE)
+    [HIDE_PROGRESSBAR]: state => ({
+      ...state,
+      show: false
+    })
+  },
+  INITIAL_STATE
+)
