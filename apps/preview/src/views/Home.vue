@@ -1,17 +1,20 @@
 <template>
   <div class="home">
     <subscribe></subscribe>
-    <feed></feed>
+    <feed>
+      <episode-entry></episode-entry>
+    </feed>
   </div>
 </template>
 
 <script>
-import { Subscribe, Feed } from '../components'
+import { Subscribe, Feed, EpisodeEntry } from '../components'
 
 export default {
   components: {
     Subscribe,
-    Feed
+    Feed,
+    EpisodeEntry
   }
 }
 </script>
