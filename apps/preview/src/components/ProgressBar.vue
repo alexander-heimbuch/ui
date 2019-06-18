@@ -39,7 +39,8 @@ export default {
   z-index: 999999;
 }
 
-.progress-enter-active, .progress-leave-active {
+.progress-enter-active,
+.progress-leave-active {
   transition: opacity 0.5s;
 }
 .progress-enter, .progress-leave-to /* .fade-leave-active below version 2.1.8 */ {

@@ -4,9 +4,10 @@ import { delay } from 'redux-saga'
 import { FETCH_DONE, READY, FETCH_FAILED } from '../store/types'
 import * as actions from '../store/actions'
 
-export const progressbarSaga = ({ progress, visible }) => function* saga() {
-  yield takeEvery(READY, init, { progress, visible })
-}
+export const progressbarSaga = ({ progress, visible }) =>
+  function* saga() {
+    yield takeEvery(READY, init, { progress, visible })
+  }
 
 export function* init({ progress, visible }) {
   yield takeEvery(({ type }) => type.startsWith('FETCH_START'), start, { progress, visible })
@@ -23,7 +24,6 @@ export function* start({ progress, visible }) {
 
   yield put(actions.showProgressbar())
   yield call(setProgress, { visible, progress })
-
 }
 
 export function* setProgress({ visible, progress }) {

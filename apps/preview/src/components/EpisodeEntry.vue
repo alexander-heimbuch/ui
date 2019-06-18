@@ -15,7 +15,7 @@
             src="https://cdn.changelog.com/uploads/covers/the-changelog-small.png?v=63725770322"
             style="background-color: #121921"
             data-loaded="true"
-          >
+          />
         </a>
         <a data-news="true" href="/podcast/349" title="The Changelog #349">The Changelog #349</a>
       </p>
@@ -25,7 +25,15 @@
     </header>
 
     <a class="description" href="https://changelog.com/podcast/349">
-      <p>We’re talking with Sacha Greif to discuss the State of CSS survey and results. CSS is evolving faster than ever. And, coming off the heels of their annual State of JavaScript survey, they’ve decided to take on the world of styles and selectors to help identify the latests patterns and trends in CSS. We talk through the history and motivations of this survey, the methodology of their data collection, the tooling involved to build and run the survey, and of course we dig deep into the survey results and talk through the insights we found most interesting.</p>
+      <p>
+        We’re talking with Sacha Greif to discuss the State of CSS survey and results. CSS is
+        evolving faster than ever. And, coming off the heels of their annual State of JavaScript
+        survey, they’ve decided to take on the world of styles and selectors to help identify the
+        latests patterns and trends in CSS. We talk through the history and motivations of this
+        survey, the methodology of their data collection, the tooling involved to build and run the
+        survey, and of course we dig deep into the survey results and talk through the insights we
+        found most interesting.
+      </p>
       <p class="news_item-description-continue">
         <span>read more</span>
       </p>
@@ -49,7 +57,7 @@
               data-src="https://cdn.changelog.com/uploads/avatars/people/YNg/avatar_small.png?v=63727757100"
               src="https://cdn.changelog.com/uploads/avatars/people/YNg/avatar_small.png?v=63727757100"
               data-loaded="true"
-            >
+            />
           </a>
           <a href="https://adamstacoviak.com/" title="Adam Stacoviak">
             <img
@@ -58,7 +66,7 @@
               data-src="https://cdn.changelog.com/uploads/avatars/people/Qo/avatar_small.png?v=63680484054"
               src="https://cdn.changelog.com/uploads/avatars/people/Qo/avatar_small.png?v=63680484054"
               data-loaded="true"
-            >
+            />
           </a>
           <a href="https://jerodsanto.net" title="Jerod Santo">
             <img
@@ -67,7 +75,7 @@
               data-src="https://secure.gravatar.com/avatar/d63705fb0197936da304756dd7fea127.jpg?s=150&amp;d=mm"
               src="https://secure.gravatar.com/avatar/d63705fb0197936da304756dd7fea127.jpg?s=150&amp;d=mm"
               data-loaded="true"
-            >
+            />
           </a>
         </span>
       </div>

@@ -24,7 +24,14 @@ export function createStore(env = 'server') {
     composeEnhancers(applyMiddleware(sagas.middleware))
   )
 
-  sagas.run(fetchSaga, routerSaga, progressbarSaga({ visible: selectors.progressbarVisible, progress: selectors.progressbarProgress }))
+  sagas.run(
+    fetchSaga,
+    routerSaga,
+    progressbarSaga({
+      visible: selectors.progressbarVisible,
+      progress: selectors.progressbarProgress
+    })
+  )
 
   connect({ Vue, store })
 

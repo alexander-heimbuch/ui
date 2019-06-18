@@ -1,6 +1,11 @@
 import { prop } from 'ramda'
 import { handleActions } from 'redux-actions'
-import { SHOW_PROGRESSBAR, HIDE_PROGRESSBAR, PROGRESS_PROGRESSBAR, FAIL_PROGRESSBAR } from '../types'
+import {
+  SHOW_PROGRESSBAR,
+  HIDE_PROGRESSBAR,
+  PROGRESS_PROGRESSBAR,
+  FAIL_PROGRESSBAR
+} from '../types'
 
 export const INITIAL_STATE = {
   show: false,
@@ -27,7 +32,7 @@ export const reducer = handleActions(
       progress: payload
     }),
 
-    [FAIL_PROGRESSBAR]: (state) => ({
+    [FAIL_PROGRESSBAR]: state => ({
       ...state,
       failed: true
     })
