@@ -1,12 +1,17 @@
-query {
+{
   publishedPodcasts {
     episodes {
       id,
       guid,
       image,
+      duration,
       content,
-      duration
       title,
+			enclosure {
+        length,
+        url,
+        type
+      },
       audio {
         chapters {
           image,
@@ -17,8 +22,7 @@ query {
         duration,
         publishedAt,
         id
-      },
-      content
+      }
     }
   }
 }
