@@ -22,7 +22,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-@import './theme/globals';
-@import './theme/layout';
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="feed-wrapper">
-    <div class="feed">
+    <div class="feed mx-auto flex flex-col items-center">
       <slot></slot>
     </div>
   </div>
@@ -10,17 +10,6 @@
 export default {}
 </script>
 
-<style lang="scss">
-@import '../theme/variables';
+<style>
 
-.feed-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing * 2;
-}
-
-.feed {
-  width: $desktop;
-}
 </style>

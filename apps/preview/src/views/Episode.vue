@@ -1,10 +1,13 @@
 <template>
-  <section class="subscribe"></section>
+  <p>Episode!</p>
 </template>
 
 <script>
-export default {}
+export default {
+
+}
 </script>
 
 <style>
+
 </style>

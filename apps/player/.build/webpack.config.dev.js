@@ -17,12 +17,27 @@ module.exports = {
     directives: './src/directives',
     '@podlove/components': componentAssets
   }),
-
   devtool: 'inline-source-map',
   devServer: devServer({ port: 9000, contentBase: './dist' }),
 
   module: {
-    rules: [rules.vue(), rules.javascript(), rules.images(), rules.vueStyles({ prod: false }), rules.pug()]
+    rules: [
+      rules.vue(),
+      rules.javascript(),
+      rules.images(),
+      rules.style.config(rules.style.test.scss, [
+        rules.style.loader.vue(),
+        rules.style.loader.css(),
+        rules.style.loader.postcss({
+          plugins: [
+            rules.style.postcss.plugins.clean,
+            rules.style.postcss.plugins.autoprefixer
+          ]
+        }),
+        rules.style.loader.sass()
+      ]),
+      rules.pug()
+    ]
   },
 
   plugins: [

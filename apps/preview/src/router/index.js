@@ -4,12 +4,20 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const Home = () => import('../views/Home.vue')
+const Episode = () => import('../views/Episode.vue')
 
 export function createRouter() {
   return new Router({
     mode: 'history',
     fallback: false,
-    scrollBehavior: () => ({ y: 0 }),
-    routes: [{ path: '/', component: Home, name: 'home' }]
+    routes: [{
+      path: '/',
+      component: Home,
+      name: 'home'
+    }, {
+      path: '/episode/:guid',
+      component: Episode,
+      name: 'episode'
+    }]
   })
 }

@@ -1,6 +1,7 @@
-const autoprefixer = require('autoprefixer')
-const cssClean = require('postcss-clean')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const cssClean = require('postcss-clean')
+const tailwindcss = require('tailwindcss')
+const autoprefixer = require('autoprefixer')
 
 const { prepend } = require('./utils')
 
@@ -28,56 +29,48 @@ const mustache = () => ({
   loader: 'mustache-loader?minify'
 })
 
-const vueStyles = ({ includePaths = [], prod = false } = {}) => ({
-  test: /\.scss$/,
-  use: [
-    {
-      loader: prod ? MiniCssExtractPlugin.loader : 'vue-style-loader'
-    },
-    {
+const style = {
+  test: {
+    scss: /\.scss$/,
+    css: /\.css$/,
+    postcss: /\.postcss$/
+  },
+  postcss: {
+    plugins: {
+      clean: cssClean({
+        inline: ['none']
+      }),
+      autoprefixer,
+      tailwind: tailwindcss
+    }
+  },
+  loader: {
+    vue: () => ({
+      loader: 'vue-style-loader'
+    }),
+    minify: () => ({
+      loader: MiniCssExtractPlugin.loader
+    }),
+    css: () => ({
       loader: 'css-loader'
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        plugins: () => [
-          cssClean({
-            inline: ['none']
-          }),
-          autoprefixer()
-        ]
-      }
-    },
-    {
+    }),
+    sass: ({ includePaths = [] } = {}) => ({
       loader: 'sass-loader',
       options: { includePaths }
-    }
-  ]
-})
-
-const scss = ({ includePaths = [] } = {}) => ({
-  test: /\.scss$/,
-  use: [
-    {
-      loader: 'css-loader'
-    },
-    {
+    }),
+    postcss: ({ plugins = [] } = {}) => ({
       loader: 'postcss-loader',
       options: {
-        plugins: () => [
-          cssClean({
-            inline: ['none']
-          }),
-          autoprefixer()
-        ]
+        ident: 'postcss',
+        plugins
       }
-    },
-    {
-      loader: 'sass-loader',
-      options: { includePaths }
-    }
-  ]
-})
+    })
+  },
+  config: (test, use = []) => ({
+    test,
+    use
+  })
+}
 
 const pug = () => ({
   test: /\.pug$/,
@@ -109,12 +102,11 @@ module.exports = {
   vue,
   javascript,
   images,
-  vueStyles,
   fonts,
   pug,
-  scss,
   mustache,
   handlebars,
   url,
-  graphql
+  graphql,
+  style
 }

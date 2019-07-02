@@ -22,7 +22,23 @@ module.exports = {
   }),
 
   module: {
-    rules: [rules.vue(), rules.javascript(), rules.images(), rules.vueStyles({ prod: true }), rules.pug()]
+    rules: [
+      rules.vue(),
+      rules.javascript(),
+      rules.images(),
+      rules.style.config(rules.style.test.scss, [
+        rules.style.loader.minify(),
+        rules.style.loader.css(),
+        rules.style.loader.postcss({
+          plugins: [
+            rules.style.postcss.plugins.clean,
+            rules.style.postcss.plugins.autoprefixer
+          ]
+        }),
+        rules.style.loader.sass()
+      ]),
+      rules.pug()
+    ]
   },
 
   plugins: [

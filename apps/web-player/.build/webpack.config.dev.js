@@ -25,7 +25,20 @@ module.exports = {
   devServer: devServer({ port: 9000, contentBase: './dist' }),
 
   module: {
-    rules: [rules.javascript(), rules.scss(), rules.mustache()]
+    rules: [
+      rules.javascript(),
+      rules.style.config(rules.style.test.scss, [
+        rules.style.loader.css(),
+        rules.style.loader.postcss({
+          plugins: [
+            rules.style.postcss.plugins.clean,
+            rules.style.postcss.plugins.autoprefixer
+          ]
+        }),
+        rules.style.loader.sass()
+      ]),
+      rules.mustache()
+    ]
   },
 
   plugins: [

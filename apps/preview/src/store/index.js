@@ -7,7 +7,7 @@ import { fetchSaga } from '../sagas/fetch'
 import { progressbarSaga } from '../sagas/progressbar'
 
 import reducers from './reducers'
-import * as selectors from './selectors'
+import { progressbar } from './selectors'
 
 export function createStore(env = 'server') {
   let composeEnhancers = compose
@@ -28,8 +28,8 @@ export function createStore(env = 'server') {
     fetchSaga,
     routerSaga,
     progressbarSaga({
-      visible: selectors.progressbarVisible,
-      progress: selectors.progressbarProgress
+      visible: progressbar.visible,
+      progress: progressbar.progress
     })
   )
 

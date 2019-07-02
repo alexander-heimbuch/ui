@@ -19,7 +19,7 @@
     "@babel/preset-env": "7.4.4",
     "@csstools/postcss-sass": "3.0.0",
     "@podlove/utils": "^4.5.6",
-    "autoprefixer": "9.4.2",
+    "autoprefixer": "9.6.0",
     "babel-loader": "8.0.4",
     "babel-preset-vue": "2.0.2",
     "copy-webpack-plugin": "5.0.1",
@@ -53,6 +53,7 @@
     "url-loader": "1.1.2",
     "friendly-errors-webpack-plugin": "1.7.0",
     "sw-precache-webpack-plugin": "0.11.5",
-    "webpack-graphql-loader": "1.0.2"
+    "webpack-graphql-loader": "1.0.2",
+    "tailwindcss": "1.0.4"
   }
 }

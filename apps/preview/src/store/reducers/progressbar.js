@@ -40,6 +40,8 @@ export const reducer = handleActions(
   INITIAL_STATE
 )
 
-export const visible = prop('show')
-export const failed = prop('failed')
-export const progress = prop('progress')
+export const selectors = {
+  visible: prop('show'),
+  failed: prop('failed'),
+  progress: prop('progress')
+}

@@ -14,7 +14,22 @@ module.exports = {
     public: path.resolve(__dirname, '../public'),
   }),
   module: {
-    rules: [rules.javascript(), rules.vue(), rules.url(), rules.vueStyles({ prod: isProd }), rules.graphql()]
+    rules: [
+      rules.javascript(),
+      rules.vue(),
+      rules.url(),
+      rules.style.config(rules.style.test.postcss, [
+        rules.style.loader.vue(),
+        rules.style.loader.css(),
+        rules.style.loader.postcss({
+          plugins: [
+            rules.style.postcss.plugins.tailwind,
+            rules.style.postcss.plugins.autoprefixer
+          ]
+        })
+      ]),
+      rules.graphql()
+    ]
   },
   plugins: isProd ? [
     plugins.vue(),

@@ -1,7 +1,8 @@
 import { map, prop, compose, flatten } from 'ramda'
 import ApolloClient from 'apollo-boost'
 import { gql } from 'apollo-boost'
-import { call, takeEvery, put, fork, take } from 'redux-saga/effects'
+import { call, takeEvery, put, fork, take, race } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 
 import podcastsQuery from '../graphql/podcasts.graphql'
 import { FETCH_EPISODES } from '../store/types'
@@ -56,6 +57,11 @@ export function* fetch(type, query, action) {
   }
 }
 
+export function* timeout() {
+  yield delay(1000)
+  yield put(actions.fetchDone())
+}
+
 const setEpisodes = compose(
   actions.setEpisodes,
   flatten,
@@ -65,5 +71,8 @@ const setEpisodes = compose(
 
 export function* fetchSaga() {
   yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)
-  yield fork(fetching)
+
+  yield race([fetching, timeout])
+
+  console.log('done')
 }

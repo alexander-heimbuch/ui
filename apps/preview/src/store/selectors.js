@@ -1,17 +1,12 @@
 import { compose, prop } from 'ramda'
-import * as progressbar from './reducers/progressbar'
+import { composeObject } from '@podlove/utils/helper'
+import { selectors as progressbarSlices } from './reducers/progressbar'
+import { selectors as episodeSlices } from './reducers/episodes'
 
-const progressbarSlice = prop('progressbar')
+const slices = {
+  progressbar: prop('progressbar'),
+  episodes: prop('episodes')
+}
 
-export const progressbarVisible = compose(
-  progressbar.visible,
-  progressbarSlice
-)
-export const progressbarProgress = compose(
-  progressbar.progress,
-  progressbarSlice
-)
-export const progressbarFailed = compose(
-  progressbar.failed,
-  progressbarSlice
-)
+export const episodes = composeObject(slices.episodes, episodeSlices)
+export const progressbar = composeObject(slices.progressbar, progressbarSlices)

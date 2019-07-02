@@ -1,27 +1,28 @@
 {
   publishedPodcasts {
     episodes {
+
       id,
-      guid,
       image,
-      duration,
-      content,
+      duration
       title,
+      description,
+      publishedAt,
+
+      podcast {
+        id,
+        title,
+        image
+      },
+
 			enclosure {
         length,
         url,
         type
       },
+
       audio {
-        chapters {
-          image,
-          link,
-          start,
-          title
-        },
-        duration,
-        publishedAt,
-        id
+        duration
       }
     }
   }
