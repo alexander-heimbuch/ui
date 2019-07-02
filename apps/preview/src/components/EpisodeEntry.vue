@@ -20,10 +20,9 @@
         </h2>
       </header>
 
-      <a
-        class="block w-full text-sm leading-snug mb-4"
-        href="https://changelog.com/podcast/349"
-      >{{ description }}</a>
+      <a class="block w-full text-sm leading-snug mb-4" href="https://changelog.com/podcast/349">{{
+        description
+      }}</a>
 
       <div class="flex">
         <div v-if="contributors" class="flex leading-loose mr-2">

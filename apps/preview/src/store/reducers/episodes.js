@@ -21,17 +21,27 @@ const contributors = prop('contributors')
 const image = prop('image')
 const title = prop('title')
 const description = prop('description')
-const duration = compose(prop('duration'), audio)
+const duration = compose(
+  prop('duration'),
+  audio
+)
 
 const episodeCover = image
-const podcastCover = compose(image, podcast)
-const podcastTitle = compose(title, podcast)
+const podcastCover = compose(
+  image,
+  podcast
+)
+const podcastTitle = compose(
+  title,
+  podcast
+)
 
 const cover = either(episodeCover, podcastCover)
 
 const published = prop('publishedAt')
 
-const latestEpisodes = episodes => episodes.sort((a, b) => new Date(published(b)).getTime() - new Date(published(a)).getTime())
+const latestEpisodes = episodes =>
+  episodes.sort((a, b) => new Date(published(b)).getTime() - new Date(published(a)).getTime())
 
 export const selectors = {
   title,

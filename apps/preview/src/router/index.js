@@ -10,14 +10,17 @@ export function createRouter() {
   return new Router({
     mode: 'history',
     fallback: false,
-    routes: [{
-      path: '/',
-      component: Home,
-      name: 'home'
-    }, {
-      path: '/episode/:guid',
-      component: Episode,
-      name: 'episode'
-    }]
+    routes: [
+      {
+        path: '/',
+        component: Home,
+        name: 'home'
+      },
+      {
+        path: '/episode/:guid',
+        component: Episode,
+        name: 'episode'
+      }
+    ]
   })
 }

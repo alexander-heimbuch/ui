@@ -2,7 +2,11 @@
   <div class="home">
     <subscribe></subscribe>
     <feed>
-      <episode-entry v-for="episode in episodes" :key="episode.id" :episode="episode"></episode-entry>
+      <episode-entry
+        v-for="episode in episodes"
+        :key="episode.id"
+        :episode="episode"
+      ></episode-entry>
     </feed>
   </div>
 </template>

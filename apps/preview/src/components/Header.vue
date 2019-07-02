@@ -3,10 +3,18 @@
     <div class="flex max-w-2xl">
       <div class="flex items-center mr-32">
         <nav class="text-gray-600 font-light">
-          <router-link to="/" exact class="text-sm mx-2 py-1">Home</router-link>
-          <router-link to="/episodes" exact class="text-sm mx-2 py-1">Episodes</router-link>
-          <router-link to="/subscribe" exact class="text-sm mx-2 py-1">Subscribe</router-link>
-          <router-link to="/about" exact class="text-sm mx-2 py-1">About</router-link>
+          <router-link to="/" exact class="text-sm mx-2 py-1">
+            Home
+          </router-link>
+          <router-link to="/episodes" exact class="text-sm mx-2 py-1">
+            Episodes
+          </router-link>
+          <router-link to="/subscribe" exact class="text-sm mx-2 py-1">
+            Subscribe
+          </router-link>
+          <router-link to="/about" exact class="text-sm mx-2 py-1">
+            About
+          </router-link>
         </nav>
       </div>
 
@@ -15,7 +23,7 @@
           type="text"
           class="text-gray-600 bg-gray-200 font-light border border-gray-300 rounded-sm p-1 text-sm"
           placeholder="Search"
-        >
+        />
       </div>
     </div>
   </header>
