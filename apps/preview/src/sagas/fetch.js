@@ -26,6 +26,7 @@ const request = query =>
 
 export function* fetching() {
   let running = []
+  console.log('fetching')
 
   while (true) {
     const startAction = yield take(({ type }) => type.startsWith('FETCH_START_'))
@@ -58,6 +59,7 @@ export function* fetch(type, query, action) {
 }
 
 export function* timeout() {
+  console.log('timeout')
   yield delay(1000)
   yield put(actions.fetchDone())
 }
@@ -72,7 +74,10 @@ const setEpisodes = compose(
 export function* fetchSaga() {
   yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)
 
-  yield race([fetching, timeout])
+  yield race({
+    fetching: fork(fetching),
+    timeout: timeout
+  })
 
   console.log('done')
 }
