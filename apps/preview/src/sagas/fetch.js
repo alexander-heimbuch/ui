@@ -5,7 +5,7 @@ import { call, takeEvery, put, fork, take, race } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
 import podcastsQuery from '../graphql/podcasts.graphql'
-import { FETCH_EPISODES } from '../store/types'
+import { FETCH_EPISODES, FETCH_DONE } from '../store/types'
 import * as actions from '../store/actions'
 
 export const client = new ApolloClient({
@@ -26,7 +26,6 @@ const request = query =>
 
 export function* fetching() {
   let running = []
-  console.log('fetching')
 
   while (true) {
     const startAction = yield take(({ type }) => type.startsWith('FETCH_START_'))
@@ -58,12 +57,6 @@ export function* fetch(type, query, action) {
   }
 }
 
-export function* timeout() {
-  console.log('timeout')
-  yield delay(1000)
-  yield put(actions.fetchDone())
-}
-
 const setEpisodes = compose(
   actions.setEpisodes,
   flatten,
@@ -71,13 +64,20 @@ const setEpisodes = compose(
   prop('publishedPodcasts')
 )
 
-export function* fetchSaga() {
-  yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)
-
-  yield race({
-    fetching: fork(fetching),
-    timeout: timeout
+// wait if a fech is happening
+export function* waiting() {
+  const { timeout } = yield race({
+    fetched: take(({ type }) => type.startsWith('FETCH_START_')),
+    timeout: delay(100)
   })
 
-  console.log('done')
+  if (timeout) {
+    yield put(actions.fetchDone())
+  }
+}
+
+export function* fetchSaga() {
+  yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)
+  yield fork(fetching)
+  yield fork(waiting)
 }
