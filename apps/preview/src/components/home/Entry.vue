@@ -7,27 +7,34 @@
         href="https://changelog.com/news/5Ddr/visit"
         title="The state of CSS in 2019"
       >
-        <img class="rounded shadow-md" alt="The Changelog" :src="cover" data-loaded="true" />
+        <img
+          class="rounded shadow-md"
+          alt="The Changelog"
+          :src="episode.cover"
+          data-loaded="true"
+        />
       </a>
     </div>
     <div class="max-w-full">
       <header class="mb-4">
         <p class="font-mono text-xs">
-          <a href="/podcast/349" :title="podcast">{{ podcast }}</a>
+          <a href="/podcast/349" :title="episode.podcast.title">{{ episode.podcast.title }}</a>
         </p>
         <h2 class="text-xl font-extrabold">
-          <a href="https://changelog.com/news/5Ddr/visit">{{ title }}</a>
+          <router-link :to="{ name: 'episode', params: { id: episode.id } }">
+            {{ episode.title }}
+          </router-link>
         </h2>
       </header>
 
       <a class="block w-full text-sm leading-snug mb-4" href="https://changelog.com/podcast/349">{{
-        description
+        episode.description
       }}</a>
 
       <div class="flex">
-        <div v-if="contributors" class="flex leading-loose mr-2">
+        <div v-if="episode.contributors" class="flex leading-loose mr-2">
           <a
-            v-for="contributor in contributors"
+            v-for="contributor in episode.contributors"
             :key="contributor.id"
             :href="contributor.url"
             :title="contributor.name"
@@ -37,12 +44,12 @@
           </a>
         </div>
         <div class="leading-loose font-mono text-sm">
-          <a href="https://changelog.com/news/o298/visit" :title="published">
+          <a href="https://changelog.com/news/o298/visit" :title="episode.published">
             {{ publishedDistance }}
           </a>
           ∘
-          <a href="https://changelog.com/news/o298/visit" :title="duration">
-            {{ duration }}
+          <a href="https://changelog.com/news/o298/visit" :title="episode.duration">
+            {{ episode.duration }}
           </a>
         </div>
       </div>
@@ -52,40 +59,24 @@
 
 <script>
 import { distanceInWordsToNow } from 'date-fns'
-import { selectors } from '../store/reducers/episodes'
 
 export default {
   props: {
     episode: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        cover: null,
+        title: null,
+        podcast: {},
+        description: null,
+        contributos: null,
+        duration: null
+      })
     }
   },
-
   computed: {
-    cover() {
-      return selectors.cover(this.episode)
-    },
-    title() {
-      return selectors.title(this.episode)
-    },
-    podcast() {
-      return selectors.podcastTitle(this.episode)
-    },
-    description() {
-      return selectors.description(this.episode)
-    },
-    contributors() {
-      return selectors.contributors(this.episode)
-    },
     publishedDistance() {
-      return distanceInWordsToNow(new Date(selectors.published(this.episode)))
-    },
-    published() {
-      return new Date(selectors.published(this.episode)).toDateString()
-    },
-    duration() {
-      return selectors.duration(this.episode)
+      return distanceInWordsToNow(new Date(this.episode.published))
     }
   }
 }

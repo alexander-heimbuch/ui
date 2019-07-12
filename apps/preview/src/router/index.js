@@ -17,7 +17,7 @@ export function createRouter() {
         name: 'home'
       },
       {
-        path: '/episode/:guid',
+        path: '/episode/:id',
         component: Episode,
         name: 'episode'
       }

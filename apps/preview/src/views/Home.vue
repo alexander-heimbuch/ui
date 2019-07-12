@@ -2,11 +2,7 @@
   <div class="home">
     <subscribe></subscribe>
     <feed>
-      <episode-entry
-        v-for="episode in episodes"
-        :key="episode.id"
-        :episode="episode"
-      ></episode-entry>
+      <entry v-for="episode in episodes" :key="episode.id" :episode="episode"></entry>
     </feed>
   </div>
 </template>
@@ -15,16 +11,16 @@
 import { mapState } from 'redux-vuex'
 
 import * as select from '../store/selectors'
-import { Subscribe, Feed, EpisodeEntry } from '../components'
+import { Subscribe, Feed, Entry } from '../components/home'
 
 export default {
   components: {
     Subscribe,
     Feed,
-    EpisodeEntry
+    Entry
   },
   data: mapState({
-    episodes: select.episodes.latestEpisodes
+    episodes: select.latestEpisodes
   })
 }
 </script>

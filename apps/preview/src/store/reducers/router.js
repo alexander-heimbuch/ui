@@ -20,3 +20,7 @@ export const reducer = handleActions(
   },
   INITIAL_STATE
 )
+
+export const selectors = {
+  params: prop('params')
+}

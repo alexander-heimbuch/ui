@@ -4,19 +4,21 @@ import { gql } from 'apollo-boost'
 import { call, takeEvery, put, fork, take, race } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
-import podcastsQuery from '../graphql/podcasts.graphql'
-import { FETCH_EPISODES, FETCH_DONE } from '../store/types'
+import networkQuery from '../graphql/network'
+import episodeQuery from '../graphql/episode'
+
+import { FETCH_NETWORK, FETCH_EPISODE } from '../store/types'
 import * as actions from '../store/actions'
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/api/graphiql'
 })
 
-const request = query =>
+const request = (query, variables = {}) =>
   client
     .query({
       query: gql`
-        ${query}
+        ${query(variables)}
       `
     })
     .catch(err => {
@@ -40,15 +42,15 @@ export function* fetching() {
   }
 }
 
-export function* fetch(type, query, action) {
+export function* fetch(type, query, callback, { payload }) {
   yield put({
     type: `FETCH_START_${type}`
   })
 
   try {
-    const response = yield call(request, query)
+    const response = yield call(request, query, payload)
 
-    yield put(action(response))
+    yield put(callback(response))
     yield put({
       type: `FETCH_DONE_${type}`
     })
@@ -57,11 +59,16 @@ export function* fetch(type, query, action) {
   }
 }
 
-const setEpisodes = compose(
+const setNetwork = compose(
   actions.setEpisodes,
   flatten,
   map(prop('episodes')),
   prop('publishedPodcasts')
+)
+
+const setEpisode = compose(
+  actions.addEpisode,
+  prop('publishedEpisode')
 )
 
 // wait if a fech is happening
@@ -77,7 +84,10 @@ export function* waiting() {
 }
 
 export function* fetchSaga() {
-  yield takeEvery(FETCH_EPISODES, fetch, 'EPISODES', podcastsQuery, setEpisodes)
+  yield takeEvery(FETCH_NETWORK, fetch, 'NETWORK', networkQuery, setNetwork)
+  yield takeEvery(FETCH_EPISODE, fetch, 'EPISODE', episodeQuery, setEpisode)
+
+  // Fetch automatism
   yield fork(fetching)
   yield fork(waiting)
 }

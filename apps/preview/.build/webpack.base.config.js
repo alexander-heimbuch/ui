@@ -12,6 +12,7 @@ module.exports = {
   },
   resolve: resolve({
     public: path.resolve(__dirname, '../public'),
+    '~': path.resolve(__dirname, '../src')
   }),
   module: {
     rules: [

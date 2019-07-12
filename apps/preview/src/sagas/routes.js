@@ -1,7 +1,7 @@
 import { compose, prop } from 'ramda'
-import { takeEvery, put } from 'redux-saga/effects'
+import { takeEvery, put, select } from 'redux-saga/effects'
 import { ROUTE_CHANGED } from '../store/types'
-import { fetchEpisodes } from '../store/actions'
+import { fetchNetwork, fetchEpisode } from '../store/actions'
 
 const routeName = compose(
   prop('name'),
@@ -9,10 +9,17 @@ const routeName = compose(
 )
 const onRoute = name => action => action.type === ROUTE_CHANGED && routeName(action) === name
 
-export function* routerSaga() {
-  yield takeEvery(onRoute('home'), home)
-}
+export const routerSaga = ({ routeParams }) =>
+  function* saga() {
+    yield takeEvery(onRoute('home'), home)
+    yield takeEvery(onRoute('episode'), episode, { routeParams })
+  }
 
 export function* home() {
-  yield put(fetchEpisodes())
+  yield put(fetchNetwork())
+}
+
+export function* episode({ routeParams }) {
+  const { id } = yield select(routeParams)
+  yield put(fetchEpisode({ id }))
 }

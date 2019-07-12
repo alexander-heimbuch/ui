@@ -1,4 +1,6 @@
-import { prop, propOr, compose, either } from 'ramda'
+import { prop, propOr, compose, either, map } from 'ramda'
+import { createObject } from '@podlove/utils/helper'
+
 import { handleActions } from 'redux-actions'
 
 import { ADD_EPISODE, SET_EPISODES } from '../types'
@@ -7,12 +9,17 @@ export const INITIAL_STATE = []
 
 export const reducer = handleActions(
   {
-    [ADD_EPISODE]: (state, { payload }) => [...state, payload],
+    [ADD_EPISODE]: (state, { payload }) => {
+      const inList = state.some(({ id }) => id === prop('id', payload))
+
+      return inList ? state : [...state, payload]
+    },
     [SET_EPISODES]: (_, { payload }) => payload
   },
   INITIAL_STATE
 )
 
+const id = prop('id')
 const audio = propOr({}, 'audio')
 const podcast = propOr({}, 'podcast')
 const enclosure = propOr({}, 'enclosure')
@@ -40,10 +47,8 @@ const cover = either(episodeCover, podcastCover)
 
 const published = prop('publishedAt')
 
-const latestEpisodes = episodes =>
-  episodes.sort((a, b) => new Date(published(b)).getTime() - new Date(published(a)).getTime())
-
-export const selectors = {
+const episode = {
+  id,
   title,
   episodeCover,
   description,
@@ -55,6 +60,9 @@ export const selectors = {
   podcastCover,
   podcastTitle,
   published,
-  latestEpisodes,
   contributors
+}
+
+export const selectors = {
+  episodes: map(createObject(episode))
 }

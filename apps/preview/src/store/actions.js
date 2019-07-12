@@ -3,10 +3,13 @@ import * as types from './types'
 
 export const addEpisode = createAction(types.ADD_EPISODE)
 export const setEpisodes = createAction(types.SET_EPISODES)
+
 export const syncRouter = createAction(types.ROUTE_CHANGED)
 export const fetchDone = createAction(types.FETCH_DONE)
 export const fetchFailed = createAction(types.FETCH_FAILED)
-export const fetchEpisodes = createAction(types.FETCH_EPISODES)
+export const fetchNetwork = createAction(types.FETCH_NETWORK)
+export const fetchEpisode = createAction(types.FETCH_EPISODE)
+
 export const routeChanged = createAction(types.ROUTE_CHANGED)
 
 // Lifecycle

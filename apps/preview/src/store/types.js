@@ -1,4 +1,5 @@
-export const FETCH_EPISODES = 'FETCH_EPISODES'
+export const FETCH_NETWORK = 'FETCH_NETWORK'
+export const FETCH_EPISODE = 'FETCH_EPISODE'
 export const FETCH_DONE = 'FETCH_DONE'
 export const FETCH_FAILED = 'FETCH_FAILED'
 
