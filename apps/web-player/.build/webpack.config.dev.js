@@ -22,12 +22,12 @@ module.exports = {
 
   optimization: { namedModules: true, namedChunks: true, splitChunks: { cacheGroups: { default: false } } },
 
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   devServer: devServer({ port: 9000, contentBase: './dist' }),
 
   module: {
     rules: [
-      rules.javascript(),
+      rules.javascript({ include: ['localstorage', 'query-string', 'split-on-first', 'strict-uri-encode'] }),
       rules.style.config(rules.style.test.scss, [
         rules.style.loader.css(),
         rules.style.loader.postcss({

@@ -44,7 +44,8 @@
     "lint-staged": "9.4.2",
     "prettier": "1.18.2",
     "save-remote-file-webpack-plugin": "1.0.2",
-    "vue-jest": "4.0.0-beta.2"
+    "vue-jest": "4.0.0-beta.2",
+    "core-js": "3.4.0"
   },
   "lint-staged": {
     "**/*.{js,vue}": [

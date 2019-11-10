@@ -26,7 +26,7 @@ module.exports = {
 
   module: {
     rules: [
-      rules.javascript(),
+      rules.javascript({ exclude: ['hogan', 'runtime' ,'core-js'] }),
       rules.style.config(rules.style.test.scss, [
         rules.style.loader.css(),
         rules.style.loader.postcss({

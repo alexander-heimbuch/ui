@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+import './polyfills'
+
 import { prop } from 'ramda'
 import { init as playerInit } from '@podlove/player-actions/lifecycle'
 import { init as buttonInit } from '@podlove/button-actions/lifecycle'
