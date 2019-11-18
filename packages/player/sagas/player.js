@@ -65,52 +65,6 @@ export function* initPlayer({ selectMedia, selectTitle, selectPoster, mediaEleme
   yield fork(syncAttributes, { mediaElement, selectTitle, selectPoster })
 }
 
-export function* driver({ selectPlaytime, mediaElement }) {
-  // AudioActions
-  const actions = audioActions(mediaElement)
-  yield takeEvery(REQUEST_PLAY, play, actions, selectPlaytime)
-  yield takeEvery(REQUEST_PAUSE, pause, actions)
-  yield takeEvery(REQUEST_RESTART, restart, actions)
-  yield takeEvery(REQUEST_LOAD, load, actions)
-  yield takeEvery(REQUEST_PLAYTIME, playtime, actions)
-  yield takeEvery(SET_RATE, rate, actions)
-  yield takeEvery(SET_VOLUME, volume, actions)
-  yield takeEvery(MUTE, mute, actions)
-  yield takeEvery(UNMUTE, unmute, actions)
-
-  // AudioEvents
-  const events = audioEvents(mediaElement)
-  const readyEvent = yield call(channel, events.onReady)
-  const playEvent = yield call(channel, events.onPlay)
-  const pauseEvent = yield call(channel, events.onPause)
-  const endEvent = yield call(channel, events.onEnd)
-  const playtimeEvent = yield call(channel, events.onPlaytimeUpdate)
-  const bufferingEvent = yield call(channel, events.onBuffering)
-  const durationEvent = yield call(channel, events.onDurationChange)
-  const bufferChangeEvent = yield call(channel, events.onBufferChange)
-  const errorEvent = yield call(channel, events.onError)
-
-  yield takeEvery(readyEvent, onReady)
-  yield takeEvery(playEvent, onPlay)
-  yield takeEvery(pauseEvent, onPause)
-  yield takeEvery(endEvent, onEnd)
-  yield takeEvery(playtimeEvent, onPlaytimeUpdate)
-  yield takeEvery(durationEvent, onDurationChange)
-  yield takeEvery(bufferChangeEvent, onBufferChange)
-  yield takeEvery(bufferingEvent, onBuffering)
-  yield takeEvery(errorEvent, onError)
-
-  return mediaElement
-}
-
-// Attribute Bindings
-export function* syncAttributes({ mediaElement, selectTitle, selectPoster }) {
-  const title = yield select(selectTitle)
-  const poster = yield select(selectPoster)
-
-  setAttributes({ title, poster, 'x-webkit-airplay': 'allow' }, mediaElement)
-}
-
 // Actions
 export function* play(actions, selectPlaytime) {
   const playtime = yield select(selectPlaytime)
@@ -192,4 +146,51 @@ export function* onBufferChange(buffers = []) {
 
 export function* onError(type) {
   yield put(backendError(type))
+}
+
+export function* driver({ selectPlaytime, mediaElement }) {
+  // AudioActions
+  const actions = audioActions(mediaElement)
+
+  yield takeEvery(REQUEST_PLAY, play, actions, selectPlaytime)
+  yield takeEvery(REQUEST_PAUSE, pause, actions)
+  yield takeEvery(REQUEST_RESTART, restart, actions)
+  yield takeEvery(REQUEST_LOAD, load, actions)
+  yield takeEvery(REQUEST_PLAYTIME, playtime, actions)
+  yield takeEvery(SET_RATE, rate, actions)
+  yield takeEvery(SET_VOLUME, volume, actions)
+  yield takeEvery(MUTE, mute, actions)
+  yield takeEvery(UNMUTE, unmute, actions)
+
+  // AudioEvents
+  const events = audioEvents(mediaElement)
+  const readyEvent = yield call(channel, events.onReady)
+  const playEvent = yield call(channel, events.onPlay)
+  const pauseEvent = yield call(channel, events.onPause)
+  const endEvent = yield call(channel, events.onEnd)
+  const playtimeEvent = yield call(channel, events.onPlaytimeUpdate)
+  const bufferingEvent = yield call(channel, events.onBuffering)
+  const durationEvent = yield call(channel, events.onDurationChange)
+  const bufferChangeEvent = yield call(channel, events.onBufferChange)
+  const errorEvent = yield call(channel, events.onError)
+
+  yield takeEvery(readyEvent, onReady)
+  yield takeEvery(playEvent, onPlay)
+  yield takeEvery(pauseEvent, onPause)
+  yield takeEvery(endEvent, onEnd)
+  yield takeEvery(playtimeEvent, onPlaytimeUpdate)
+  yield takeEvery(durationEvent, onDurationChange)
+  yield takeEvery(bufferChangeEvent, onBufferChange)
+  yield takeEvery(bufferingEvent, onBuffering)
+  yield takeEvery(errorEvent, onError)
+
+  return mediaElement
+}
+
+// Attribute Bindings
+export function* syncAttributes({ mediaElement, selectTitle, selectPoster }) {
+  const title = yield select(selectTitle)
+  const poster = yield select(selectPoster)
+
+  setAttributes({ title, poster, 'x-webkit-airplay': 'allow' }, mediaElement)
 }

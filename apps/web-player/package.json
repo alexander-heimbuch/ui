@@ -31,8 +31,7 @@
     "hashcode": "1.0.3",
     "iframe-resizer": "4.2.2",
     "localstorage": "1.0.1",
-    "ramda": "0.26.1",
-    "core-js": "3.4.0"
+    "ramda": "0.26.1"
   },
   "devDependencies": {
     "@podlove/build": "^5.0.0",

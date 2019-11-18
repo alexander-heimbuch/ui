@@ -3,7 +3,7 @@ const { output, resolve, devServer, rules, plugins } = require('@podlove/build')
 const componentAssets = path.resolve('./node_modules/@podlove/components/dist')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
 
   entry: {
     example: './example/example.js',
@@ -15,7 +15,7 @@ module.exports = {
     store: './src/store',
     '@podlove/components': componentAssets
   }),
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   devServer: devServer({ port: 9000, contentBase: './dist' }),
 
   module: {

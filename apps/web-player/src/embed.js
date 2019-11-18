@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import './polyfills'
+import polyfills from './polyfills'
 
 import { prop } from 'ramda'
 import { init as playerInit } from '@podlove/player-actions/lifecycle'
@@ -15,6 +15,8 @@ import * as player from './player'
 import * as subscribeButton from './subscribe-button'
 
 const podlovePlayer = async (selector, episode, meta) => {
+  await polyfills()
+
   let target
 
   try {

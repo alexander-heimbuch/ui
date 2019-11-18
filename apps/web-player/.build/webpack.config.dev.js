@@ -20,14 +20,12 @@ module.exports = {
     '@podlove/player': playerAssets
   }),
 
-  optimization: { namedModules: true, namedChunks: true, splitChunks: { cacheGroups: { default: false } } },
-
   devtool: 'source-map',
   devServer: devServer({ port: 9000, contentBase: './dist' }),
 
   module: {
     rules: [
-      rules.javascript({ include: ['localstorage', 'query-string', 'split-on-first', 'strict-uri-encode'] }),
+      rules.javascript({ exclude: ['hogan.js', 'core-js', 'webpack-dev-server/client', 'ansi-html', 'punycode', 'sockjs-client', 'loglevel', 'url', 'events', 'regenerator-runtime', 'ramda', 'dompurify', 'iframe-resizer', 'hashcode'] }),
       rules.style.config(rules.style.test.scss, [
         rules.style.loader.css(),
         rules.style.loader.postcss({

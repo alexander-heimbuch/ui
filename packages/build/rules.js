@@ -14,7 +14,7 @@ const javascript = ({ include } = {}) => ({
   test: /\.js?$/,
   loader: 'babel-loader',
   exclude: include
-    ? new RegExp('/node_modules/(?!(' + include.join('|') + ')/).*/', 'ig')
+    ? new RegExp('node_modules\/(?!(' + include.join('|') +  ')\/).*', 'ig')
     : /node_modules/
 })
 
