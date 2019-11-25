@@ -1,8 +1,4 @@
-import 'core-js/es/symbol'
-import 'core-js/es/object'
-import 'core-js/es/promise'
-import 'core-js/es/array'
-import 'regenerator-runtime/runtime'
+/* eslint-disable no-inner-declarations */
 
 if (typeof window.CustomEvent !== 'function') {
   function CustomEvent(event, params) {
@@ -18,22 +14,14 @@ if (typeof window.CustomEvent !== 'function') {
 
 if (!('remove' in Element.prototype)) {
   Element.prototype.remove = function() {
-      if (this.parentNode) {
-          this.parentNode.removeChild(this);
-      }
-  };
+    if (this.parentNode) {
+      this.parentNode.removeChild(this)
+    }
+  }
 }
 
 if (!String.prototype.includes) {
   String.prototype.includes = function() {
-    return String.prototype.indexOf.apply(this, arguments) !== -1;
+    return String.prototype.indexOf.apply(this, arguments) !== -1
   }
 }
-
-const polyfills = []
-
-if (typeof fetch === 'undefined') {
-  polyfills.push(import(/* webpackChunkName: 'fetch-polyfill' */ 'whatwg-fetch'))
-}
-
-export default () => Promise.all(polyfills)

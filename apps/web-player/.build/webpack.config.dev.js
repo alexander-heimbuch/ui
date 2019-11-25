@@ -12,12 +12,14 @@ module.exports = {
   entry: {
     embed: './src/embed.js',
     share: './src/share.js',
+    polyfills: './src/polyfills.js',
     'extensions/external-events': './src/extensions/external-events.js'
   },
   output: output(),
 
   resolve: resolve({
-    '@podlove/player': playerAssets
+    '@podlove/player': playerAssets,
+    '@podlove/subscribe-button': subscribeButtonAssets
   }),
 
   devtool: 'source-map',
@@ -25,7 +27,7 @@ module.exports = {
 
   module: {
     rules: [
-      rules.javascript({ exclude: ['hogan.js', 'core-js', 'webpack-dev-server/client', 'ansi-html', 'punycode', 'sockjs-client', 'loglevel', 'url', 'events', 'regenerator-runtime', 'ramda', 'dompurify', 'iframe-resizer', 'hashcode'] }),
+      rules.javascript(),
       rules.style.config(rules.style.test.scss, [
         rules.style.loader.css(),
         rules.style.loader.postcss({
@@ -46,7 +48,9 @@ module.exports = {
     plugins.html({
       filename: 'index.html',
       template: './example/example.html',
-      exclude: ['share']
+      inject: 'head',
+      sort: 'manual',
+      chunks: ['polyfills', 'embed', 'extensions/external-events']
     }),
     plugins.html({
       files: {
@@ -56,6 +60,7 @@ module.exports = {
       filename: 'share.html',
       template: '!!mustache-loader!./src/player/share.mustache',
       exclude: ['embed', 'extensions/external-events'],
+      root: '',
       base: `${version}/player/`
     }),
     plugins.env({

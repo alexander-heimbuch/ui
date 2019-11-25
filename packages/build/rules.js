@@ -10,12 +10,10 @@ const vue = () => ({
   use: 'vue-loader'
 })
 
-const javascript = ({ include } = {}) => ({
+const javascript = () => ({
   test: /\.js?$/,
   loader: 'babel-loader',
-  exclude: include
-    ? new RegExp('node_modules\/(?!(' + include.join('|') +  ')\/).*', 'ig')
-    : /node_modules/
+  exclude: /node_modules/
 })
 
 const images = () => ({

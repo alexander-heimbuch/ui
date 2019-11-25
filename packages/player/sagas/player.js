@@ -165,6 +165,7 @@ export function* driver({ selectPlaytime, mediaElement }) {
   // AudioEvents
   const events = audioEvents(mediaElement)
   const readyEvent = yield call(channel, events.onReady)
+  const loadedEvent = yield call(channel, events.onLoaded)
   const playEvent = yield call(channel, events.onPlay)
   const pauseEvent = yield call(channel, events.onPause)
   const endEvent = yield call(channel, events.onEnd)
@@ -175,6 +176,7 @@ export function* driver({ selectPlaytime, mediaElement }) {
   const errorEvent = yield call(channel, events.onError)
 
   yield takeEvery(readyEvent, onReady)
+  yield takeEvery(loadedEvent, onReady)
   yield takeEvery(playEvent, onPlay)
   yield takeEvery(pauseEvent, onPause)
   yield takeEvery(endEvent, onEnd)
