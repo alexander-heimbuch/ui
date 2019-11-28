@@ -1,5 +1,4 @@
 /* eslint-disable no-inner-declarations */
-
 if (typeof window.CustomEvent !== 'function') {
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined }

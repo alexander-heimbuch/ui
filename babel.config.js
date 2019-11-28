@@ -1,15 +1,6 @@
 module.exports = {
   sourceType: 'unambiguous',
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          browsers: ['> 0.25%', 'not dead']
-        }
-      }
-    ]
-  ],
+  presets: ['@babel/preset-env'],
   plugins: [
     '@babel/plugin-proposal-object-rest-spread',
     '@babel/plugin-syntax-dynamic-import',

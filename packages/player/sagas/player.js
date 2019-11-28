@@ -52,6 +52,7 @@ export function* initPlayer({ selectMedia, selectTitle, selectPoster, mediaEleme
 
   // reset existing media element
   pauseAudio(mediaElement)
+
   mediaElement.setAttribute('src', null)
   while (mediaElement.firstChild) {
     mediaElement.removeChild(mediaElement.firstChild)
